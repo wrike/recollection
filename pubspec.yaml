@@ -10,3 +10,6 @@ homepage: https://github.com/ranquild/recollection
 
 environment:
   sdk: '>=2.0.0-dev <3.0.0'
+
+dependencies:
+  meta: ^1.1.0
