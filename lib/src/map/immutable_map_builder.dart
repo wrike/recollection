@@ -14,7 +14,7 @@ class ImmutableMapBuilder<K, V> {
     _controlled = true;
   }
 
-  ImmutableMapBuilder<K, V> set(K key, V value) {
+  ImmutableMapBuilder<K, V> put(K key, V value) {
     _checkState();
     _map[key] = value;
 
