@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:recollection/src/immutable_list.dart';
+import 'package:recollection/src/list/immutable_list.dart';
 
 class ImmutableListBuilder<E> {
   List<E> _list;
