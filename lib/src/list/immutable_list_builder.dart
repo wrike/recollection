@@ -11,16 +11,13 @@ class ImmutableListBuilder<E> {
     _controlled = true;
   }
 
-  ImmutableListBuilder.from(Iterable<E> elements) {
-    _checkElements(elements);
-
-    _list = elements.toList();
+  ImmutableListBuilder.from(Iterable<E> list) {
+    _list = list.toList();
     _controlled = true;
   }
 
   ImmutableListBuilder<E> add(E value) {
     _checkState();
-    _checkElement(value);
 
     _list.add(value);
 
@@ -29,7 +26,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> addAll(Iterable<E> iterable) {
     _checkState();
-    _checkElements(iterable);
 
     _list.addAll(iterable);
 
@@ -46,7 +42,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> fillRange(int start, int end, [E fillValue]) {
     _checkState();
-    _checkElement(fillValue);
 
     _list.fillRange(start, end, fillValue);
 
@@ -55,7 +50,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> insert(int index, E element) {
     _checkState();
-    _checkElement(element);
 
     _list.insert(index, element);
 
@@ -64,7 +58,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> insertAll(int index, Iterable<E> iterable) {
     _checkState();
-    _checkElement(iterable);
 
     _list.insertAll(index, iterable);
 
@@ -73,7 +66,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> remove(Object value) {
     _checkState();
-    _checkElement(value);
 
     _list.remove(value);
 
@@ -114,7 +106,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> replaceRange(int start, int end, Iterable<E> replacement) {
     _checkState();
-    _checkElement(replacement);
 
     _list.replaceRange(start, end, replacement);
 
@@ -131,7 +122,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> set(int index, E element) {
     _checkState();
-    _checkElement(element);
 
     _list[index] = element;
 
@@ -140,7 +130,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> setAll(int index, Iterable<E> iterable) {
     _checkState();
-    _checkElements(iterable);
 
     _list.setAll(index, iterable);
 
@@ -149,7 +138,6 @@ class ImmutableListBuilder<E> {
 
   ImmutableListBuilder<E> setRange(int start, int end, Iterable<E> iterable, [int skipCount = 0]) {
     _checkState();
-    _checkElements(iterable);
 
     _list.setRange(start, end, iterable);
 
@@ -183,13 +171,5 @@ class ImmutableListBuilder<E> {
       _list = _list.toList();
       _controlled = true;
     }
-  }
-
-  void _checkElement<E>(E element) {
-    assert(element != null);
-  }
-
-  void _checkElements<E>(Iterable<E> elements) {
-    assert(elements.every((e) => e != null));
   }
 }

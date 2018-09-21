@@ -9,13 +9,13 @@ class ImmutableList<E> implements List<E> {
   const ImmutableList()
     : _list = const [];
 
-  ImmutableList.from(Iterable<E> elements)
-    : assert(elements.every((e) => e != null)),
-      _list = elements.toList();
+  ImmutableList.from(Iterable<E> list)
+    : assert(_checkNotNullList(list)),
+      _list = list.toList();
 
-  ImmutableList.view(List<E> elements)
-    : assert(elements.every((e) => e != null)),
-      _list = elements;
+  ImmutableList.view(List<E> list)
+    : assert(_checkNotNullList(list)),
+      _list = list;
 
   @override
   E get first {
@@ -25,7 +25,7 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   set first(E value) {
-    _checkState('first');
+    throw UnsupportedError('first');
   }
 
   @override
@@ -36,7 +36,7 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   set last(E value) {
-    _checkState('last');
+    throw UnsupportedError('last');
   }
 
   @override
@@ -47,7 +47,7 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   set length(int newLength) {
-    _checkState('length');
+    throw UnsupportedError('length');
   }
 
   @override
@@ -88,19 +88,19 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   void operator []=(int index, E value) {
-    _checkState('indexed set');
+    throw UnsupportedError('indexed set');
   }
 
   @override
   @alwaysThrows
   void add(E value) {
-    _checkState('add');
+    throw UnsupportedError('add');
   }
 
   @override
   @alwaysThrows
   void addAll(Iterable<E> iterable) {
-    _checkState('addAll');
+    throw UnsupportedError('addAll');
   }
 
   @override
@@ -121,7 +121,7 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   void clear() {
-    _checkState('clear');
+    throw UnsupportedError('clear');
   }
 
   @override
@@ -147,7 +147,7 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   void fillRange(int start, int end, [E fillValue]) {
-    _checkState('fillRange');
+    throw UnsupportedError('fillRange');
   }
 
   @override
@@ -188,13 +188,13 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   void insert(int index, E element) {
-    _checkState('insert');
+    throw UnsupportedError('insert');
   }
 
   @override
   @alwaysThrows
   void insertAll(int index, Iterable<E> iterable) {
-    _checkState('insertAll');
+    throw UnsupportedError('insertAll');
   }
 
   @override
@@ -230,61 +230,61 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   bool remove(Object value) {
-    _checkState('remove');
+    throw UnsupportedError('remove');
   }
 
   @override
   @alwaysThrows
   E removeAt(int index) {
-    _checkState('removeAt');
+    throw UnsupportedError('removeAt');
   }
 
   @override
   @alwaysThrows
   E removeLast() {
-    _checkState('removeLast');
+    throw UnsupportedError('removeLast');
   }
 
   @override
   @alwaysThrows
   void removeRange(int start, int end) {
-    _checkState('removeRange');
+    throw UnsupportedError('removeRange');
   }
 
   @override
   @alwaysThrows
   void removeWhere(bool Function(E element) test) {
-    _checkState('removeWhere');
+    throw UnsupportedError('removeWhere');
   }
 
   @override
   @alwaysThrows
   void replaceRange(int start, int end, Iterable<E> replacement) {
-    _checkState('replaceRange');
+    throw UnsupportedError('replaceRange');
   }
 
   @override
   @alwaysThrows
   void retainWhere(bool Function(E element) test) {
-    _checkState('retainWhere');
+    throw UnsupportedError('retainWhere');
   }
 
   @override
   @alwaysThrows
   void setAll(int index, Iterable<E> iterable) {
-    _checkState('setAll');
+    throw UnsupportedError('setAll');
   }
 
   @override
   @alwaysThrows
   void setRange(int start, int end, Iterable<E> iterable, [int skipCount = 0]) {
-    _checkState('setRange');
+    throw UnsupportedError('setRange');
   }
 
   @override
   @alwaysThrows
   void shuffle([Random random]) {
-    _checkState('shuffle');
+    throw UnsupportedError('shuffle');
   }
 
   @override
@@ -305,7 +305,7 @@ class ImmutableList<E> implements List<E> {
   @override
   @alwaysThrows
   void sort([int Function(E a, E b) compare]) {
-    _checkState('sort');
+    throw UnsupportedError('sort');
   }
 
   @override
@@ -343,8 +343,7 @@ class ImmutableList<E> implements List<E> {
     return _list.whereType<T>();
   }
 
-  @alwaysThrows
-  void _checkState(String reason) {
-    throw UnsupportedError(reason);
+  bool _checkNotNullList<E>(Iterable<E> list) {
+    return list.every((e) => e != null);
   }
 }
