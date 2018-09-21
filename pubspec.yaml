@@ -1,0 +1,12 @@
+name: recollection
+version: 1.0.0
+description: Effective immutable collections for Dart.
+
+authors:
+- Alexander Polyankin <alexander.polyankin@team.wrike.com>
+- Max Grebenschikov <maxim.grebenshikov@team.wrike.com>
+
+homepage: https://github.com/ranquild/recollection
+
+environment:
+  sdk: '>=2.0.0-dev <3.0.0'
