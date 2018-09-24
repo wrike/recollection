@@ -1,22 +1,22 @@
 import 'dart:math';
 
-import 'package:recollection/src/list/immutable_list.dart';
+import 'package:recollection/src/list/list_view.dart';
 
-class ImmutableListBuilder<E> {
+class ListBuilder<E> {
   List<E> _list;
   bool _controlled;
 
-  ImmutableListBuilder() {
+  ListBuilder() {
     _list = [];
     _controlled = true;
   }
 
-  ImmutableListBuilder.from(Iterable<E> list) {
+  ListBuilder.from(Iterable<E> list) {
     _list = list.toList();
     _controlled = true;
   }
 
-  ImmutableListBuilder<E> add(E value) {
+  ListBuilder<E> add(E value) {
     _checkState();
 
     _list.add(value);
@@ -24,7 +24,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> addAll(Iterable<E> iterable) {
+  ListBuilder<E> addAll(Iterable<E> iterable) {
     _checkState();
 
     _list.addAll(iterable);
@@ -32,7 +32,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> clear() {
+  ListBuilder<E> clear() {
     _checkState();
 
     _list.clear();
@@ -40,7 +40,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> fillRange(int start, int end, [E fillValue]) {
+  ListBuilder<E> fillRange(int start, int end, [E fillValue]) {
     _checkState();
 
     _list.fillRange(start, end, fillValue);
@@ -48,7 +48,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> insert(int index, E element) {
+  ListBuilder<E> insert(int index, E element) {
     _checkState();
 
     _list.insert(index, element);
@@ -56,7 +56,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> insertAll(int index, Iterable<E> iterable) {
+  ListBuilder<E> insertAll(int index, Iterable<E> iterable) {
     _checkState();
 
     _list.insertAll(index, iterable);
@@ -64,7 +64,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> remove(Object value) {
+  ListBuilder<E> remove(Object value) {
     _checkState();
 
     _list.remove(value);
@@ -72,7 +72,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> removeAt(int index) {
+  ListBuilder<E> removeAt(int index) {
     _checkState();
 
     _list.removeAt(index);
@@ -80,7 +80,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> removeLast() {
+  ListBuilder<E> removeLast() {
     _checkState();
 
     _list.removeLast();
@@ -88,7 +88,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> removeRange(int start, int end) {
+  ListBuilder<E> removeRange(int start, int end) {
     _checkState();
 
     _list.removeRange(start, end);
@@ -96,7 +96,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> removeWhere(bool Function(E element) test) {
+  ListBuilder<E> removeWhere(bool Function(E element) test) {
     _checkState();
 
     _list.removeWhere(test);
@@ -104,7 +104,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> replaceRange(int start, int end, Iterable<E> replacement) {
+  ListBuilder<E> replaceRange(int start, int end, Iterable<E> replacement) {
     _checkState();
 
     _list.replaceRange(start, end, replacement);
@@ -112,7 +112,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> retainWhere(bool Function(E element) test) {
+  ListBuilder<E> retainWhere(bool Function(E element) test) {
     _checkState();
 
     _list.retainWhere(test);
@@ -120,7 +120,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> set(int index, E element) {
+  ListBuilder<E> set(int index, E element) {
     _checkState();
 
     _list[index] = element;
@@ -128,7 +128,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> setAll(int index, Iterable<E> iterable) {
+  ListBuilder<E> setAll(int index, Iterable<E> iterable) {
     _checkState();
 
     _list.setAll(index, iterable);
@@ -136,7 +136,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> setRange(int start, int end, Iterable<E> iterable, [int skipCount = 0]) {
+  ListBuilder<E> setRange(int start, int end, Iterable<E> iterable, [int skipCount = 0]) {
     _checkState();
 
     _list.setRange(start, end, iterable);
@@ -144,7 +144,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> shuffle([Random random]) {
+  ListBuilder<E> shuffle([Random random]) {
     _checkState();
 
     _list.shuffle(random);
@@ -152,7 +152,7 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableListBuilder<E> sort([int Function(E a, E b) compare]) {
+  ListBuilder<E> sort([int Function(E a, E b) compare]) {
     _checkState();
 
     _list.sort(compare);
@@ -160,10 +160,10 @@ class ImmutableListBuilder<E> {
     return this;
   }
 
-  ImmutableList<E> build() {
+  ListView<E> build() {
     _controlled = false;
 
-    return ImmutableList.view(_list);
+    return ListView.from(_list);
   }
 
   void _checkState() {

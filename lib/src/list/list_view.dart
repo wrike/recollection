@@ -3,17 +3,13 @@ import 'dart:math';
 
 import 'package:meta/meta.dart';
 
-class ImmutableList<E> implements List<E> {
+class ListView<E> implements List<E> {
   final List<E> _list;
 
-  const ImmutableList()
+  const ListView()
     : _list = const [];
 
-  ImmutableList.from(Iterable<E> list)
-    : assert(_checkNotNullList(list)),
-      _list = list.toList();
-
-  ImmutableList.view(List<E> list)
+  ListView.from(List<E> list)
     : assert(_checkNotNullList(list)),
       _list = list;
 

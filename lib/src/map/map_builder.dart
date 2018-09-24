@@ -1,27 +1,28 @@
-import 'package:recollection/src/map/immutable_map.dart';
+import 'package:recollection/src/map/map_view.dart';
 
-class ImmutableMapBuilder<K, V> {
+class MapBuilder<K, V> {
   Map<K, V> _map;
   bool _controlled;
 
-  ImmutableMapBuilder() {
+  MapBuilder() {
     _map = {};
     _controlled = true;
   }
 
-  ImmutableMapBuilder.from(Map<K, V> map) {
+  MapBuilder.from(Map<K, V> map) {
     _map = Map.of(map);
     _controlled = true;
   }
 
-  ImmutableMapBuilder<K, V> put(K key, V value) {
+  MapBuilder<K, V> put(K key, V value) {
     _checkState();
+
     _map[key] = value;
 
     return this;
   }
 
-  ImmutableMapBuilder<K, V> addAll(Map<K, V> other) {
+  MapBuilder<K, V> addAll(Map<K, V> other) {
     _checkState();
 
     _map.addAll(other);
@@ -29,7 +30,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> addEntries(Iterable<MapEntry<K, V>> newEntries) {
+  MapBuilder<K, V> addEntries(Iterable<MapEntry<K, V>> newEntries) {
     _checkState();
 
     _map.addEntries(newEntries);
@@ -37,7 +38,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> clear() {
+  MapBuilder<K, V> clear() {
     _checkState();
 
     _map.clear();
@@ -45,7 +46,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> putIfAbsent(K key, V Function() ifAbsent) {
+  MapBuilder<K, V> putIfAbsent(K key, V Function() ifAbsent) {
     _checkState();
 
     _map.putIfAbsent(key, ifAbsent);
@@ -53,7 +54,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> remove(Object key) {
+  MapBuilder<K, V> remove(Object key) {
     _checkState();
 
     _map.remove(key);
@@ -61,7 +62,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> removeWhere(bool Function(K key, V value) predicate) {
+  MapBuilder<K, V> removeWhere(bool Function(K key, V value) predicate) {
     _checkState();
 
     _map.removeWhere(predicate);
@@ -69,7 +70,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> update(K key, V Function(V value) update, {V Function() ifAbsent}) {
+  MapBuilder<K, V> update(K key, V Function(V value) update, {V Function() ifAbsent}) {
     _checkState();
 
     _map.update(key, update, ifAbsent: ifAbsent);
@@ -77,7 +78,7 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMapBuilder<K, V> updateAll(V Function(K key, V value) update) {
+  MapBuilder<K, V> updateAll(V Function(K key, V value) update) {
     _checkState();
 
     _map.updateAll(update);
@@ -85,10 +86,10 @@ class ImmutableMapBuilder<K, V> {
     return this;
   }
 
-  ImmutableMap<K, V> build() {
+  MapView<K, V> build() {
     _controlled = false;
 
-    return ImmutableMap.view(_map);
+    return MapView.from(_map);
   }
 
   void _checkState() {

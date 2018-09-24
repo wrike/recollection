@@ -4,7 +4,6 @@ description: Effective immutable collections for Dart.
 
 authors:
 - Alexander Polyankin <alexander.polyankin@team.wrike.com>
-- Max Grebenschikov <maxim.grebenshikov@team.wrike.com>
 
 homepage: https://github.com/ranquild/recollection
 

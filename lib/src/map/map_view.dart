@@ -2,17 +2,13 @@ import 'dart:core';
 
 import 'package:meta/meta.dart';
 
-class ImmutableMap<K, V> implements Map<K, V> {
+class MapView<K, V> implements Map<K, V> {
   final Map<K, V> _map;
 
-  const ImmutableMap()
+  const MapView()
     : _map = const {};
 
-  ImmutableMap.from(Map<K, V> map)
-    : assert(_checkNotNullMap(map)),
-      _map = Map.from(map);
-
-  ImmutableMap.view(Map<K, V> map)
+  MapView.from(Map<K, V> map)
     : assert(_checkNotNullMap(map)),
       _map = map;
 
