@@ -12,6 +12,8 @@ class ListBuilder<E> {
   }
 
   ListBuilder.from(Iterable<E> list) {
+    assert(list != null);
+
     _list = list.toList();
     _controlled = true;
   }
@@ -163,7 +165,7 @@ class ListBuilder<E> {
   ListView<E> build() {
     _controlled = false;
 
-    return ListView.from(_list);
+    return ListView.of(_list);
   }
 
   void _checkState() {

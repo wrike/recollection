@@ -8,9 +8,14 @@ class MapView<K, V> implements Map<K, V> {
   const MapView()
     : _map = const {};
 
-  MapView.from(Map<K, V> map)
-    : assert(_checkNotNullMap(map)),
+  MapView.of(Map<K, V> map)
+    : assert(map != null),
       _map = map;
+
+  @override
+  Iterable<MapEntry<K, V>> get entries {
+    return _map.entries;
+  }
 
   @override
   bool get isEmpty {
@@ -23,23 +28,18 @@ class MapView<K, V> implements Map<K, V> {
   }
 
   @override
-  int get length {
-    return _map.length;
-  }
-
-  @override
   Iterable<K> get keys {
     return _map.keys;
   }
 
   @override
-  Iterable<V> get values {
-    return _map.values;
+  int get length {
+    return _map.length;
   }
 
   @override
-  Iterable<MapEntry<K, V>> get entries {
-    return _map.entries;
+  Iterable<V> get values {
+    return _map.values;
   }
 
   @override
@@ -124,9 +124,5 @@ class MapView<K, V> implements Map<K, V> {
   @alwaysThrows
   void updateAll(V Function(K key, V value) update) {
     throw UnsupportedError('updateAll');
-  }
-
-  bool _checkNotNullMap(Map<K, V> map) {
-    return map.entries.every((entry) => entry.key != null && entry.value != null);
   }
 }

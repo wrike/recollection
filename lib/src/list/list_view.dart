@@ -9,8 +9,8 @@ class ListView<E> implements List<E> {
   const ListView()
     : _list = const [];
 
-  ListView.from(List<E> list)
-    : assert(_checkNotNullList(list)),
+  ListView.of(List<E> list)
+    : assert(list != null),
       _list = list;
 
   @override
@@ -22,6 +22,21 @@ class ListView<E> implements List<E> {
   @alwaysThrows
   set first(E value) {
     throw UnsupportedError('first');
+  }
+
+  @override
+  bool get isEmpty {
+    return _list.isEmpty;
+  }
+
+  @override
+  bool get isNotEmpty {
+    return _list.isNotEmpty;
+  }
+
+  @override
+  Iterator<E> get iterator {
+    return _list.iterator;
   }
 
   @override
@@ -47,28 +62,13 @@ class ListView<E> implements List<E> {
   }
 
   @override
-  E get single {
-    return _list.single;
-  }
-
-  @override
-  bool get isEmpty {
-    return _list.isEmpty;
-  }
-
-  @override
-  bool get isNotEmpty {
-    return _list.isNotEmpty;
-  }
-
-  @override
-  Iterator<E> get iterator {
-    return _list.iterator;
-  }
-
-  @override
   Iterable<E> get reversed {
     return _list.reversed;
+  }
+
+  @override
+  E get single {
+    return _list.single;
   }
 
   @override
@@ -337,9 +337,5 @@ class ListView<E> implements List<E> {
   @override
   Iterable<T> whereType<T>() {
     return _list.whereType<T>();
-  }
-
-  bool _checkNotNullList<E>(Iterable<E> list) {
-    return list.every((e) => e != null);
   }
 }

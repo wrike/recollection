@@ -10,16 +10,10 @@ class MapBuilder<K, V> {
   }
 
   MapBuilder.from(Map<K, V> map) {
+    assert(map != null);
+
     _map = Map.of(map);
     _controlled = true;
-  }
-
-  MapBuilder<K, V> put(K key, V value) {
-    _checkState();
-
-    _map[key] = value;
-
-    return this;
   }
 
   MapBuilder<K, V> addAll(Map<K, V> other) {
@@ -42,6 +36,14 @@ class MapBuilder<K, V> {
     _checkState();
 
     _map.clear();
+
+    return this;
+  }
+
+  MapBuilder<K, V> put(K key, V value) {
+    _checkState();
+
+    _map[key] = value;
 
     return this;
   }
@@ -89,7 +91,7 @@ class MapBuilder<K, V> {
   MapView<K, V> build() {
     _controlled = false;
 
-    return MapView.from(_map);
+    return MapView.of(_map);
   }
 
   void _checkState() {
