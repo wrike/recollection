@@ -7,7 +7,6 @@ dist/
 node_modules/
 packages
 pubspec.lock
-.dart_tool
 
 # Files created by dart2js
 *.dart.js
