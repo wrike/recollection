@@ -11,9 +11,9 @@ Create immutable views around list with `ListView`. Recreate lists with `ListBui
 ```dart
 var list = [1, 2, 3];
 
-var view = ListView.of(set);
+var view = ListView.of(list);
 
-list = ListBuilder.from(set)
+list = ListBuilder.from(list)
   .add(4)
   .remove(2)
   .build();
