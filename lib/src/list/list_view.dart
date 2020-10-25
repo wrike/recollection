@@ -11,7 +11,7 @@ class ListView<E> implements List<E> {
 
   ListView.of(List<E> list)
     : assert(list != null),
-      _list = list;
+      _list = list is ListView ? (list as ListView<E>)._list : list;
 
   @override
   E get first {
