@@ -10,7 +10,7 @@ class MapView<K, V> implements Map<K, V> {
 
   MapView.of(Map<K, V> map)
     : assert(map != null),
-      _map = map;
+      _map = map is MapView ? (map as MapView<K, V>)._map : map;
 
   @override
   Iterable<MapEntry<K, V>> get entries {

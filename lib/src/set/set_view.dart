@@ -8,7 +8,7 @@ class SetView<E> implements Set<E> {
 
   SetView.of(Set<E> set)
     : assert(set != null),
-      _set = set;
+      _set = set is SetView ? (set as SetView<E>)._set : set;
 
   @override
   E get first => _set.first;
